@@ -1,0 +1,94 @@
+{
+    "name": "vscode-tm1client",
+    "displayName": "Tm1Client",
+    "description": "TM1 MDX Client",
+    "version": "0.0.2",
+    "publisher": "whiteducksoftware",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "icon": "images/icon.png",
+    "homepage": "https://github.com/whiteducksoftware/whiteducksoftware.vscode-tm1client",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/whiteducksoftware/whiteducksoftware.vscode-tm1client.git"
+    },
+    "activationEvents": [
+        "onCommand:extension.TM1Connect",
+        "onCommand:extension.TM1Login",
+        "onCommand:extension.executeMDX",
+        "onCommand:extension.formatMDX"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.TM1Connect",
+                "title": "Connect to TM1 Server"
+            },
+            {
+                "command": "extension.TM1Login",
+                "title": "Login into TM1 Database"
+            },
+            {
+                "command": "extension.formatMDX",
+                "title": "Format MDX"
+            },
+            {
+                "command": "extension.executeMDX",
+                "title": "Execute MDX"
+            }
+        ],
+        "languages": [
+            {
+                "id": "mdx",
+                "aliases": [
+                    "MDX Multidimensional Expressions"
+                ],
+                "extensions": [
+                    ".mdx"
+                ],
+                "configuration": "./mdx-language/mdx-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mdx",
+                "scopeName": "source.mdx",
+                "path": "./syntaxes/mdx.tmLanguage"
+            }
+        ],
+        "configuration": {
+            "title": "TM1 Client default server",
+            "type": "object",
+            "properties": {
+                "whiteducksoftware.tm1client.defaultserver": {
+                    "type": "string",
+                    "description": "Default TM1 server for TM1 MDX Client extension"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32",
+        "request": "2.79.0",
+        "pegjs": "0.10.0"
+    },
+    "dependencies": {
+        "request": "2.79.0",
+        "pegjs": "0.10.0"
+    }
+}
